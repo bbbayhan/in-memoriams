@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Gülnihal Kurum",
+    "age": "Reşit",
+    "city": [28.97, 41.01],
+    "date": "04/01/2020",
+    "reason": "Tespit edilemeyen",
+    "killer": "Tespit edilemeyen",
+    "requestOfProtection": "Yok",
+    "waySheDied": "Ateşli Silah",
+    "statusOfPerpetrator": "Tespit edilemeyen"
+  },
+  {
+    "name": "Leman Ege",
+    "age": "Reşit",
+    "city": [30.69, 36.9],
+    "date": "05/01/2020",
+    "reason": "Tespit edilemeyen",
+    "killer": "Arkadaşı",
+    "requestOfProtection": "Yok",
+    "waySheDied": "Darp",
+    "statusOfPerpetrator": "İntihar"
+  }
+]
