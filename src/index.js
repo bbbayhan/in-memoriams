@@ -23,16 +23,18 @@ class Application extends React.Component {
   componentDidMount() {
     const map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: "mapbox://styles/bestebayhan/ckg6d615u4hbd19o8c6reznwr",
       center: [this.state.lng, this.state.lat],
       zoom: this.state.zoom,
     });
 
     this.setState({
       markers: mockedData.map((data) => {
-        return new mapboxgl.Marker(data)
+        const placeholder = document.createElement("div");
+        ReactDOM.render(<ComponentData data={data} />, placeholder);
+        return new mapboxgl.Marker({ color: "#b40219" })
           .setLngLat(data.city)
-          .setPopup(new mapboxgl.Popup().setHTML(`<h1>${data.name}</h1>`))
+          .setPopup(new mapboxgl.Popup().setDOMContent(placeholder))
           .addTo(map);
       }),
     });
