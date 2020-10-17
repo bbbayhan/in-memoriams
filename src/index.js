@@ -8,7 +8,19 @@ const MAPBOX_ACCESS_TOKEN =
   "pk.eyJ1IjoiYmVzdGViYXloYW4iLCJhIjoiY2tibm00NDB4MXUyNDJ5bDlqZGZ1ZjNpNCJ9.FP-7Bm0LzNmmnfxgQfzFMw";
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 
+
 const mockedData = require("./mockFile.json");
+
+
+function getLocation(address){
+  return fetch(`https://us1.locationiq.com/v1/search.php?key=pk.8da4fb69611cc5aa28e7f15b1fa05f27&q=${address}&countrycodes=tr&format=json`)
+  .then(res => res.json())
+  .then(
+    (result) => [parseFloat(result[0].lon), parseFloat(result[0].lat)]
+  )
+}
+
+
 
 class Application extends React.Component {
   constructor(props) {
@@ -32,10 +44,13 @@ class Application extends React.Component {
       markers: mockedData.map((data) => {
         const placeholder = document.createElement("div");
         ReactDOM.render(<ComponentData data={data} />, placeholder);
-        return new mapboxgl.Marker({ color: "#b40219" })
-          .setLngLat(data.city)
+        const forwardGeoLocation = Promise.resolve(getLocation(data.city));
+        forwardGeoLocation.then((value)=>
+         new mapboxgl.Marker({ color: "#b40219" })
+          .setLngLat(value)
           .setPopup(new mapboxgl.Popup().setDOMContent(placeholder))
-          .addTo(map);
+          .addTo(map)
+        );
       }),
     });
   }

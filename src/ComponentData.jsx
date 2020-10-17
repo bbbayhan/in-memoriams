@@ -11,16 +11,16 @@ export const ComponentData = (props) => {
         {props.data.reason}
         <br />
         <b>Kim öldürdü: </b>
-        {props.data.killer}
+        {props.data.murderer}
         <br />
         {/* <b>Korunma talebi:</b>
-        {props.data.requestOfProtection}
+        {props.data.request_of_protection}
         <br />
         <b>Öldürülme şekli:</b>
-        {props.data.waySheDied}
+        {props.data.way}
         <br /> */}
         <b>Failin durumu:</b>
-        {props.data.statusOfPerpetrator}
+        {props.data.status_of_murderer}
       </p>
     </div>
   );
