@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import mapboxgl from "mapbox-gl";
-import {PlantData} from './PlantData';
+import {Plant} from './Plant';
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 const MAPBOX_ACCESS_TOKEN =
@@ -9,7 +9,7 @@ const MAPBOX_ACCESS_TOKEN =
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 
 
-const mockedData = require("./mockFile.json");
+const mockedData = require("./mockPlantData.json");
 
 
 function getLocation(address){
@@ -40,14 +40,12 @@ class Application extends React.Component {
     this.setState({
       markers: mockedData.map((data) => {
         const placeholder = document.createElement("div");
-        ReactDOM.render(<PlantData/>, placeholder);
-        const forwardGeoLocation = Promise.resolve(getLocation("Mersin"));
-        forwardGeoLocation.then((value)=>
-         new mapboxgl.Marker({ color: "#b40219" })
-          .setLngLat(value)
+        console.log(data.geoLocation);
+        ReactDOM.render(<Plant data={data}/>, placeholder);
+        return new mapboxgl.Marker({ color: "#b40219" })
+          .setLngLat(data.geoLocation)
           .setPopup(new mapboxgl.Popup().setDOMContent(placeholder))
           .addTo(map)
-        );
       }),
     });
   }
